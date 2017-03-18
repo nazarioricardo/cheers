@@ -11,11 +11,13 @@ exports.hello = function (req, res) {
 		if(!error){ 
 			// log something
 			var $ = cheerio.load(html);
-			var speed = $("td.glamor_datatemp:contains('KT')").text(); 
+			var dir_speed = $("td.glamor_datatemp:contains('KT')").text().split(/\s/); 
+			var dir = dir_speed[0];
+			var speed = dir_speed[1]
 			var temp = $("td.glamor_temp").text().match(/\d+/); 			
 			var gust = $("td.glamor_detailtemp:contains('KT')").text().match(/\d+/);
 
-			res.send(speed.substring(0,speed.length-3) + '\n' + gust + '\n'  + temp);	
+			res.send(dir + '\n' + speed + '\n' + gust + '\n'  + temp);	
 
 		} else {
 			console.log(error);
