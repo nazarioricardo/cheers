@@ -39,7 +39,13 @@ exports.hello = function (req, res) {
 			var gust = $("td.glamor_detailtemp:contains('KT')").text().match(/\d+/);
 			var now = new Date();
 
-			assert(dir.match(/[NEWS]+/),"direction has only NEWS characters");
+			// sanity check the values
+			if(!dir.match(/^[NEWS]+$/)){console.log("Wind direction seems wrong: "+ dir);}
+			if(!speed.match(/^\d+$/)){console.log("Wind speed seems wrong: '"+ speed + "'");}
+			// these checks fail, maybe because temp is a object not a string?
+			// if(!temp.match(/^\d+$/)){console.log("Wind temp seems wrong: '"+ temp + "'");}
+			// if(!gust.match(/^\d+$/)){console.log("Wind temp seems gust: '"+ gust + "'");}
+
 			res.send(dir + '\n' + speed + '\n' + gust + '\n'  + temp + '\n' + now);	
 
 		} else {
