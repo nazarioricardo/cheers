@@ -4,6 +4,7 @@
   "description": "try out cheerio and Functions",
   "main": "index.js",
   "dependencies": {
+    "assert": "^1.4.1",
     "cheerio": "^0.22.0",
     "request": "^2.81.0"
   },
