@@ -2,6 +2,11 @@ var cheerio = require('cheerio');
 var request = require('request');
 var assert = require('assert');
 
+const Datastore = require('@google-cloud/datastore');
+
+// Instantiates a client
+const datastore = Datastore();
+
 exports.helloWorld = (req, res) => res.send("Cheerio, World!");
 
 // set 
