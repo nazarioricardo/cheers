@@ -1,7 +1,5 @@
 var cheerio = require('cheerio');
 var request = require('request');
-var fs = require('fs')
-var plotly = require('plotly')("nazarioricardo", "nvJBWlrvBwapuT9PfCC0")
 var assert = require('assert');
 
 const Datastore = require('@google-cloud/datastore');
@@ -127,9 +125,7 @@ exports.getReadings = function (req, res) {
 				.sort(function(a,b) {
 					return a.time < b.time ? 1 : ((b.last_nom < a.last_nom) ? -1 : 0)
 				})
-
-				console.log("added" + add(1,2))
-			
+							
 			console.log('Wind Readings: ')
 			readings.forEach((reading) => {
 				const readingKey = reading[datastore.KEY]
