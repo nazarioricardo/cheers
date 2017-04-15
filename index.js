@@ -10,7 +10,14 @@ const projectId = 'cheers-164215';
 // Instantiates a client
 const datastore = Datastore({
   projectId: projectId
-});
+})
+
+const storage = require('@google-cloud/storage')({
+  projectId: 'cheers-164215',
+  keyFilename: '/path/to/keyfile.json'
+})
+
+const bucket = storage('coki-boket')
 
 exports.helloWorld = (req, res) => res.send("Cheerio, World!");
 
@@ -137,6 +144,7 @@ exports.getReadings = function (req, res) {
 				console.log(readingKey.id, reading)
 			})
 			console.log("readings " + windReadings)
-			return res.status(200).json(windReadings)
+
+			return res.status(200).send(bucket.file('index.html'), windReadings)
 		})
 }
