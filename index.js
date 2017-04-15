@@ -46,8 +46,11 @@ exports.hello = function (req, res) {
 			var $ = cheerio.load(html);
 			var dir_speed = $("td.glamor_datatemp:contains('KT')").text().split(/\s/); 
 			var dir = dir_speed[0]
-			// Sometimes speed is simply 'Calm'
-			var speed = dir_speed[1]
+			// Sometimes weatherlink shows wind speed is 'Calm' in this case old code returned undefined
+			var speed = ''
+			if (dir_speed[1] !== undefined) {
+				speed = dir_speed[1]
+			} 
 			var temp = $("td.glamor_temp").text().match(/\d+/)[0]; 			
 			var gust = $("td.glamor_detailtemp:contains('KT')").text().match(/\d+/)[0];
 			var now = new Date()
@@ -115,6 +118,7 @@ exports.getReadings = function (req, res) {
 	const kind = 'Wind-reading'
 	
 	let todayString = date.toDateString()
+	let windReadings = []
 
 	const query = datastore.createQuery(kind)
 		.filter('date', '=', todayString)
@@ -125,13 +129,14 @@ exports.getReadings = function (req, res) {
 				.sort(function(a,b) {
 					return a.time < b.time ? 1 : ((b.last_nom < a.last_nom) ? -1 : 0)
 				})
-							
+
 			console.log('Wind Readings: ')
 			readings.forEach((reading) => {
 				const readingKey = reading[datastore.KEY]
+				windReadings.push(reading)
 				console.log(readingKey.id, reading)
 			})
-			console.log("readings" + readings)
-			return res.status(200).send(JSON.stringify(readings))
+			console.log("readings " + windReadings)
+			return res.status(200).json(windReadings)
 		})
 }

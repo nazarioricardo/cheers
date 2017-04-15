@@ -1,3 +1,15 @@
+$.ajax({
+  url: 'https://us-central1-cheers-164215.cloudfunctions.net/getReadings',
+  dataType: 'json',
+  type: 'GET',
+  success: function (res) {
+    console.log(res.body)
+  },
+  error: function (err) {
+    alert('Error ' + JSON.stringify(err))
+  }
+})
+
 
 google.charts.load('current', {packages: ['corechart', 'line']})
 google.charts.setOnLoadCallback(drawBackgroundColor)
