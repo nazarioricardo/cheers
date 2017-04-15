@@ -7,9 +7,6 @@
     "@google-cloud/datastore": "^0.7.1",
     "assert": "^1.4.1",
     "cheerio": "^0.22.0",
-    "fs": "0.0.1-security",
-    "highcharts": "^5.0.10",
-    "plotly": "^1.0.6",
     "request": "^2.81.0"
   },
   "devDependencies": {},
