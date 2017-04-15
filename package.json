@@ -7,6 +7,9 @@
     "@google-cloud/datastore": "^0.7.1",
     "assert": "^1.4.1",
     "cheerio": "^0.22.0",
+    "fs": "0.0.1-security",
+    "highcharts": "^5.0.10",
+    "plotly": "^1.0.6",
     "request": "^2.81.0"
   },
   "devDependencies": {},
@@ -17,6 +20,10 @@
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "git@github.com:adamb/cheers.git"
-  }
+    "url": "git+ssh://git@github.com/adamb/cheers.git"
+  },
+  "bugs": {
+    "url": "https://github.com/adamb/cheers/issues"
+  },
+  "homepage": "https://github.com/adamb/cheers#readme"
 }
