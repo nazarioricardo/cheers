@@ -13,11 +13,11 @@ const datastore = Datastore({
 })
 
 const storage = require('@google-cloud/storage')({
-  projectId: 'cheers-164215',
+  projectId: projectId,
   keyFilename: '/path/to/keyfile.json'
 })
 
-const bucket = storage('coki-boket')
+const bucket = storage.bucket('coki-boket')
 
 exports.helloWorld = (req, res) => res.send("Cheerio, World!");
 
@@ -114,7 +114,7 @@ exports.hello = function (req, res) {
 
 		} else {
 			console.log(error);
-			res.send("error")
+			return res.send("error")
 		}
 	})
 }
